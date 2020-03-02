@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  api:
+    build: api
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./api:/api
+    ports:
+      - '8000:8000'
+    depends_on:
+      - database
+    environment:
+      - SECRET_KEY=dev
+      - DEBUG=True
+      - POSTGRES_PASSWORD=dev
+  database:
+    image: postgres:12.2
+    environment:
+      - POSTGRES_PASSWORD=dev
