@@ -4,6 +4,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = os.environ['SECRET_KEY']
 DEBUG = bool(os.environ['DEBUG'])
+CAMERA_PASSWORD = os.environ['CAMERA_PASSWORD']
 
 ALLOWED_HOSTS = []
 
@@ -21,10 +22,10 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'api.apps.images.middleware.AllowFromAnywhereMiddleware',
 ]
 
 ROOT_URLCONF = 'api.urls'

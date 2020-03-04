@@ -1,11 +1,6 @@
 from django.contrib import admin
 
-from api.apps.images.models import Camera, Image
-
-
-@admin.register(Camera)
-class CameraAdmin(admin.ModelAdmin):
-    pass
+from api.apps.images.models import Image
 
 
 @admin.register(Image)
