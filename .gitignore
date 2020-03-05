@@ -1,5 +1,21 @@
 # IDE Files
 .idea
+.vscode
 
 # Mac Files
 .DS_Store
+
+# Regenerable Dependencies
+node_modules
+
+# Cached/Compiled Files
+__pycache__
+*.pyc
+dist
+
+# Note: While this file is intended to be tracked, we chose not to track it for this project since having even git
+#       contributions is factored into to our grade. In Angular projects, this file can be up to 12000 lines long. If we
+#       were to commit this file, it would unfairly show one of us as contributing an additional 12000 lines.
+#       Additionally, since our team is small (four people), we assume that the benefits of checking in
+#       package-lock.json will not apply to us anyway.
+package-lock.json
