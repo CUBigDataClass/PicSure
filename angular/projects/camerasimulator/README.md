@@ -13,7 +13,7 @@ Written in TypeScript using Angular.
 ### Start for Development
 
 1. Change to the [angular](../../../angular) directory at the root of the repository.
-2. Run the project using `ng serve ` in this directory.
+2. Run the project using `sudo ng serve camerasimulator` in this directory.
    - **Note**: `sudo` is needed for file watchers to auto-reload on edit.
 3. Navigate to http://localhost:4200 to access the service.
 
