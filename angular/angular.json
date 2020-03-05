@@ -1,0 +1,191 @@
+{
+    "$schema": "node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "sharedlibrary": {
+            "projectType": "library",
+            "root": "projects/sharedlibrary",
+            "sourceRoot": "projects/sharedlibrary/src",
+            "prefix": "lib",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "options": {
+                        "tsConfig": "projects/sharedlibrary/tsconfig.lib.json",
+                        "project": "projects/sharedlibrary/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/sharedlibrary/tsconfig.lib.prod.json"
+                        }
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/sharedlibrary/src/test.ts",
+                        "tsConfig": "projects/sharedlibrary/tsconfig.spec.json",
+                        "karmaConfig": "projects/sharedlibrary/karma.conf.js"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/sharedlibrary/tsconfig.lib.json",
+                            "projects/sharedlibrary/tsconfig.spec.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                }
+            }
+        },
+        "camerasimulator": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "less"
+                }
+            },
+            "root": "projects/camerasimulator",
+            "sourceRoot": "projects/camerasimulator/src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "projects/camerasimulator/dist/camerasimulator",
+                        "index": "projects/camerasimulator/src/index.html",
+                        "main": "projects/camerasimulator/src/main.ts",
+                        "polyfills": "projects/camerasimulator/src/polyfills.ts",
+                        "tsConfig": "projects/camerasimulator/tsconfig.app.json",
+                        "aot": true,
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "projects/camerasimulator/src/environments/environment.ts",
+                                    "with": "projects/camerasimulator/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "camerasimulator:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "camerasimulator:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "camerasimulator:build"
+                    }
+                }
+            }
+        },
+        "imageviewer": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "less"
+                }
+            },
+            "root": "projects/imageviewer",
+            "sourceRoot": "projects/imageviewer/src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "projects/imageviewer/dist/imageviewer",
+                        "index": "projects/imageviewer/src/index.html",
+                        "main": "projects/imageviewer/src/main.ts",
+                        "polyfills": "projects/imageviewer/src/polyfills.ts",
+                        "tsConfig": "projects/imageviewer/tsconfig.app.json",
+                        "aot": true,
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "projects/imageviewer/src/environments/environment.ts",
+                                    "with": "projects/imageviewer/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "imageviewer:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "imageviewer:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "imageviewer:build"
+                    }
+                }
+            }
+        }
+    }
+}
