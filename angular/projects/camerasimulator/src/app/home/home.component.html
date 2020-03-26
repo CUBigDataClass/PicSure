@@ -1,6 +1,19 @@
-<!-- TODO: This entire page needs to be styled. -->
 
-<h1>PicSure Camera Simulator</h1>
+<body>
+    <div class="page"> 
+        <h1>PicSure Camera Simulator</h1>
+    
+        <img [src]="img"> <br/>
+        
+        <p>{{name}}</p> <br/>
+        
+        <label class="custom-button">
+            <input type="file" (change)="setImage($event)">
+            Choose File
+        </label>
+        <button class="custom-button" (click)="uploadImage()">Upload</button>
+    </div>
+</body>
 
-<input type="file" (change)="setImage($event)">
-<button (click)="uploadImage()">Upload</button>
+
+

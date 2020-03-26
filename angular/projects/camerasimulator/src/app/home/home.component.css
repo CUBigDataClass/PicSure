@@ -1,0 +1,52 @@
+.page {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+}
+
+h1 {
+    color: #7892c2;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 0 0 3px gray;
+}
+
+p {
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+img {
+    max-height: 400px;
+    max-width: 100%;
+}
+
+input[type="file"] {
+    position: absolute; left: -99999rem
+}
+
+.custom-button {
+	box-shadow: 0px 0px 0px 2px #9fb4f2;
+	background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+	background-color: #7892c2;
+	border-radius: 10px;
+	border: 1px solid #4e6096;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: Arial;
+	font-size: 19px;
+	padding: 12px 37px;
+	text-decoration: none;
+    text-shadow: 0px 1px 0px #283966;
+    margin: 10px;
+}
+
+.custom-button:hover {
+	background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+	background-color: #476e9e;
+}
+.custom-button:active {
+	position: relative;
+	top: 1px;
+}

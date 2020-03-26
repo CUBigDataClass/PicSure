@@ -6,10 +6,12 @@ import {HashService} from 'sharedlibrary/hash.service';
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
     private file: File;
-
+    img = 'https://ya-webdesign.com/transparent450_/vector-outline-camera-5.png';
+    name = '';
     constructor(
         private hashService: HashService,
         private apiService: ApiService,
@@ -18,6 +20,12 @@ export class HomeComponent {
     setImage(event: Event) {
         // Get the file information from the file input field.
         this.file = (event.target as HTMLInputElement).files[0];
+        this.name = this.file.name;
+        const reader = new FileReader();
+        reader.readAsDataURL(this.file); 
+        reader.onload = (event) => { 
+            this.img = event.target.result as string;
+        }
     }
 
     uploadImage() {
@@ -33,17 +41,21 @@ export class HomeComponent {
             this.apiService.uploadImage(hash).then(status => {
                 switch (status) {
                     case 200:
-                        // TODO: Inform the user that the upload was a success.
+                        // Inform the user that the upload was a success.
+                        alert("Image upload successful!");
                         break;
                     case 400:
-                        // TODO: Inform the user that the data sent is invalid.
+                        // Inform the user that the data sent is invalid.
+                        alert("Invalid image upload!");
                         break;
                     case 401:
-                        // TODO: Inform the user that the camera password is invalid.
+                        // Inform the user that the camera password is invalid.
+                        alert("Invalid camera password!");
                         break;
                 }
             }).catch(() => {
-                // TODO: Inform the user that there was a network error.
+                // Inform the user that there was a network error.
+                alert("Network error, try again later!");
             });
         }
     }
