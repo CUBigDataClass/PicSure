@@ -21,7 +21,7 @@ export class HomeComponent {
         private apiService: ApiService,
     ) {}
 
-    setToast(message: string, modifiedColor: string) { // TODO: add param for different cases 
+    setToast(message: string, modifiedColor: string) { 
         toast({
             html: message,  
             classes: 'rounded '.concat(modifiedColor),
@@ -46,11 +46,8 @@ export class HomeComponent {
             const hash = this.hashService.hash(image);
 
             // Check the hash against the api.
-
-            // TODO: boolean value for indicator: whether the check or X shows or not
-            // TODO: another bool value for a check mark or an X mark if image has been modified or not
+            
             this.apiService.checkImage(hash).then(status => {
-                status = 204; // TODO: get rid of this line. only for test purposes
                 switch (status) {
                     case 200:
                         // TODO: Inform the user that the image has not be modified.
@@ -71,6 +68,7 @@ export class HomeComponent {
             }).catch(error => {
                 console.log(error);
                 // TODO: Inform the user that there was a network error.
+                this.isModified = true;
                 this.setToast('Network error has occured. Please try again.', 'red');
             });
         }
