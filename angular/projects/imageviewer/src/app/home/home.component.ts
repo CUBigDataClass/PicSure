@@ -51,16 +51,13 @@ export class HomeComponent {
             this.apiService.checkImage(hash).then(status => {
                 switch (status) {
                     case 200:
-                        // TODO: Inform the user that the image has not be modified.
                         this.setToast('Image has not been modified.', 'green');
                         break;
                     case 204:
-                        // TODO: Inform the user that the image may or may not have been modified.
                         this.isModified = true;
                         this.setToast('Image may or may not have been modified.', 'red');
                         break;
                     case 400:
-                        // TODO: Inform the user that the data sent is invalid.
                         this.imageSrc = '';
                         this.isModified = true;
                         this.setToast('Uploaded image data is invalid.', 'red');
@@ -68,7 +65,6 @@ export class HomeComponent {
                 }
             }).catch(error => {
                 console.log(error);
-                // TODO: Inform the user that there was a network error.
                 this.isModified = true;
                 this.setToast('Network error has occured. Please try again.', 'red');
             });
