@@ -28,10 +28,7 @@ class ImageView(View):
     """
 
     def get(self, request, *args, **kwargs):
-        try:
-            data = request.GET
-        except JSONDecodeError:
-            return HttpResponse(status=400)
+        data = request.GET
 
         # Check if the user failed to specify any required data.
         if any(key not in data for key in ['hash']):
