@@ -13,7 +13,7 @@ export class HomeComponent {
     img = 'https://ya-webdesign.com/transparent450_/vector-outline-camera-5.png';
     name = '';
     alert = '';
-    alert_color = 'color:##000000';
+    alert_color = 'color:#000000';
     constructor(
         private hashService: HashService,
         private apiService: ApiService,
