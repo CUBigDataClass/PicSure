@@ -8,7 +8,7 @@ Written in TypeScript using Angular.
 
 1. Ensure [Node.js](https://nodejs.org) is installed on your system.
 2. Change to the [angular](../../../angular) directory at the root of the repository.
-3. Install the dependencies by running `npm install`.
+3. Install the dependencies by running `npm install` and `npm install js-sha512`
 
 ### Build
 
