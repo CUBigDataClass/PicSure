@@ -51,6 +51,7 @@ export class HomeComponent {
             this.apiService.checkImage(hash).then(status => {
                 switch (status) {
                     case 200:
+                        this.isModified = false;
                         this.setToast('Image has not been modified.', 'green');
                         break;
                     case 204:
