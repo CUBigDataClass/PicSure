@@ -1,6 +1,7 @@
 h1 {
     text-align: center;
     font-size: 300%;
+    font-family: 'Permanent Marker', cursive;
 }
 
 .title {
@@ -9,6 +10,7 @@ h1 {
     padding-bottom: 25px;
     margin-top: 5px;
 }
+
 .btn-margin {
     margin-left: 40px;
 }

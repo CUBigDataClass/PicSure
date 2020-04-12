@@ -2,11 +2,9 @@
 
 <!-- TODO: add colored box around image to show if image has been modified or not-->
 <!-- TODO: center toast -->
-<!-- TODO: stylize buttons -->
 <h1>PicSure Image Viewer</h1>
 
 <div class="center">
-
     <label class="btn waves-teal waves-effect">
         <input type="file" class="hidden" (change)="setImage($event)">
         Choose Image
@@ -14,8 +12,10 @@
     <button (click)="uploadImage()" class="btn btn-margin waves-effect waves-teal">Upload
         <i class="material-icons right">send</i>
       </button>
+
     <br><br>
-    <img *ngIf="imageSrc" [src]="imageSrc" alt="Uploaded Image">
+    
+    <img *ngIf="imageSrc" [ngStyle]="{border: '4px solid ' + getModifiedColor()}" [src]="imageSrc" alt="Uploaded Image">
     <p *ngIf="!hiddenIndicator isModified">
         <i class="material-icons large {{isModified ? 'red-text' : 'green-text'}}">{{isModified ? 'close' : 'check'}}</i>
     </p>

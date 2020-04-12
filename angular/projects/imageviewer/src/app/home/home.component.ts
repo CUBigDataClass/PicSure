@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-
 import {ApiService} from "sharedlibrary/api.service";
 import {HashService} from "sharedlibrary/hash.service";
 import {toast} from 'materialize-css';
+
+// TODO: Show five recently viewed images - store in browser data so that images are persistant between refreshes (local storage)
 
 @Component({
     selector: 'app-home',
@@ -33,6 +34,10 @@ export class HomeComponent {
     setImage(event: Event) {
         // Get the file information from the file input field.
         this.file = (event.target as HTMLInputElement).files[0];
+    }
+
+    getModifiedColor(): string {
+        return this.isModified ? 'red' : 'green';
     }
 
     uploadImage() {
