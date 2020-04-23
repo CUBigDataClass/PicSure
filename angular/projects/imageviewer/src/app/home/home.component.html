@@ -22,7 +22,7 @@
     <div class="gallery-row">
         <div class="gallery-column" *ngFor="let idx of [0, 1, 2, 3]">
             <div *ngFor="let image of imageCache; let i = index"> 
-                <img src='{{image.image}}' *ngIf = "i%4 == idx">
+                <img src='{{image.image}}' class="image" *ngIf = "i%4 == idx" [ngStyle]="{border: '4px solid ' + (image.isModified ? 'red' : 'green')}">
             </div>
         </div>
     </div>

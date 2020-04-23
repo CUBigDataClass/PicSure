@@ -26,7 +26,8 @@ export class HomeComponent {
         private hashService: HashService,
         private apiService: ApiService,
     ) {
-        this.imageCache = JSON.parse(localStorage.getItem('image_cache'));
+        let tempCache: CachedImage[] = JSON.parse(localStorage.getItem('image_cache'));
+        if (tempCache != null) this.imageCache = tempCache;
     }
 
     setToast(message: string, modifiedColor: string) { 
@@ -79,20 +80,20 @@ export class HomeComponent {
                 console.log(error);
                 this.isModified = true;
                 this.setToast('Network error has occured. Please try again.', 'red');
+            }).finally(() => {
+                this.imageCache.unshift({
+                    image: image,
+                    isModified: this.isModified
+                });
+            
+                if (this.imageCache.length > 100) {
+                    this.imageCache.pop();
+                }
+    
+                if (localStorage) {
+                    localStorage.setItem('image_cache', JSON.stringify(this.imageCache));
+                }
             });
-
-            this.imageCache.unshift({
-                image: image,
-                isModified: this.isModified
-            });
-
-            if (this.imageCache.length > 100) {
-                this.imageCache.pop();
-            }
-
-            if (localStorage) {
-                localStorage.setItem('image_cache', JSON.stringify(this.imageCache));
-            }
         }
     }
 }
