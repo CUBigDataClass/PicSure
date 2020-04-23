@@ -4,6 +4,10 @@ import {HashService} from "sharedlibrary/hash.service";
 import {toast} from 'materialize-css';
 
 // TODO: Show five recently viewed images - store in browser data so that images are persistant between refreshes (local storage)
+interface CachedImage {
+    image: string;
+    isModified: boolean;
+}
 
 @Component({
     selector: 'app-home',
@@ -14,20 +18,22 @@ export class HomeComponent {
     private file: File;
 
     public imageSrc: string = '';
+    public imageCache: CachedImage[] = [];
     public hiddenIndicator: boolean = true;
     public isModified: boolean = false;
-
 
     constructor(
         private hashService: HashService,
         private apiService: ApiService,
-    ) {}
+    ) {
+        this.imageCache = JSON.parse(localStorage.getItem('image_cache'));
+    }
 
     setToast(message: string, modifiedColor: string) { 
         toast({
             html: message,  
             classes: 'rounded '.concat(modifiedColor),
-            displayLength: 4000
+            displayLength: 7000
         });
     }
 
@@ -74,6 +80,19 @@ export class HomeComponent {
                 this.isModified = true;
                 this.setToast('Network error has occured. Please try again.', 'red');
             });
+
+            this.imageCache.unshift({
+                image: image,
+                isModified: this.isModified
+            });
+
+            if (this.imageCache.length > 100) {
+                this.imageCache.pop();
+            }
+
+            if (localStorage) {
+                localStorage.setItem('image_cache', JSON.stringify(this.imageCache));
+            }
         }
     }
 }

@@ -1,6 +1,4 @@
 <!-- TODO: This entire page needs to be styled. -->
-
-<!-- TODO: add colored box around image to show if image has been modified or not-->
 <!-- TODO: center toast -->
 <h1>PicSure Image Viewer</h1>
 
@@ -11,7 +9,8 @@
     </label>
     <button (click)="uploadImage()" class="btn btn-margin waves-effect waves-teal">Upload
         <i class="material-icons right">send</i>
-      </button>
+    </button>
+    <div id="toast-container"></div>
 
     <br><br>
     
@@ -19,5 +18,13 @@
     <p *ngIf="!hiddenIndicator isModified">
         <i class="material-icons large {{isModified ? 'red-text' : 'green-text'}}">{{isModified ? 'close' : 'check'}}</i>
     </p>
+
+    <div class="gallery-row">
+        <div class="gallery-column" *ngFor="let idx of [0, 1, 2, 3]">
+            <div *ngFor="let image of imageCache; let i = index"> 
+                <img src='{{image.image}}' *ngIf = "i%4 == idx">
+            </div>
+        </div>
+    </div>
 </div>
 
