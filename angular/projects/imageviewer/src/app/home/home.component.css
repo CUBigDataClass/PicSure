@@ -1,6 +1,4 @@
-h1 {
-    text-align: center;
-    font-size: 300%;
+h2 {
     font-family: 'Permanent Marker', cursive;
 }
 
@@ -15,6 +13,11 @@ h1 {
     margin-left: 40px;
 }
 
+.btn-margin-bottom {
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
 .center {
     text-align: center;
 }
@@ -27,17 +30,17 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     padding: 0 4px;
-  }
-  
+}
+
 .gallery-column {
     flex: 25%;
     max-width: 25%;
     padding: 0 4px;
 }
 
-.gallery-column .image:hover {
-    opacity: 0.3;
-  }
+.gallery-column .image:not(:hover) {
+    border: none !important;
+}
 
 .gallery-column img {
     margin-top: 8px;
@@ -45,16 +48,24 @@ h1 {
     width: 100%;
 }
 
+.image-height {
+    max-width: 70vh;
+}
+
+.landing-height {
+    min-height: 100vh;
+}
+
 @media screen and (max-width: 800px) {
     .gallery-column {
         flex: 50%;
         max-width: 50%;
-    }
+   }
 }
 
 @media screen and (max-width: 600px) {
     .gallery-column {
         flex: 100%;
         max-width: 100%;
-    }
+   }
 }
