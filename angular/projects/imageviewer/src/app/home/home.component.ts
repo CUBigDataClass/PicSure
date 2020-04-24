@@ -3,7 +3,10 @@ import {ApiService} from "sharedlibrary/api.service";
 import {HashService} from "sharedlibrary/hash.service";
 import {toast} from 'materialize-css';
 
-// TODO: Show five recently viewed images - store in browser data so that images are persistant between refreshes (local storage)
+interface CachedImage {
+    image: string;
+    isModified: boolean;
+}
 
 @Component({
     selector: 'app-home',
@@ -14,15 +17,27 @@ export class HomeComponent {
     private file: File;
 
     public imageSrc: string = '';
+    public imageCache: CachedImage[] = [];
     public hiddenIndicator: boolean = true;
     public isModified: boolean = false;
-
 
     constructor(
         private hashService: HashService,
         private apiService: ApiService,
-    ) {}
+    ) {
+        let tempCache: CachedImage[] = JSON.parse(localStorage.getItem('image_cache'));
+        if (tempCache != null) this.imageCache = tempCache;
+    }
 
+    clearCache() {
+        localStorage.clear();
+        this.imageCache = [];
+    }
+
+    getModifiedColor(): string {
+        return this.isModified ? 'red' : 'green';
+    }
+    
     setToast(message: string, modifiedColor: string) { 
         toast({
             html: message,  
@@ -34,10 +49,6 @@ export class HomeComponent {
     setImage(event: Event) {
         // Get the file information from the file input field.
         this.file = (event.target as HTMLInputElement).files[0];
-    }
-
-    getModifiedColor(): string {
-        return this.isModified ? 'red' : 'green';
     }
 
     uploadImage() {
@@ -73,6 +84,19 @@ export class HomeComponent {
                 console.log(error);
                 this.isModified = true;
                 this.setToast('Network error has occured. Please try again.', 'red');
+            }).finally(() => {
+                this.imageCache.unshift({
+                    image: image,
+                    isModified: this.isModified
+                });
+            
+                if (this.imageCache.length > 100) {
+                    this.imageCache.pop();
+                }
+    
+                if (localStorage) {
+                    localStorage.setItem('image_cache', JSON.stringify(this.imageCache));
+                }
             });
         }
     }

@@ -1,23 +1,32 @@
-<!-- TODO: This entire page needs to be styled. -->
-
-<!-- TODO: add colored box around image to show if image has been modified or not-->
-<!-- TODO: center toast -->
-<h1>PicSure Image Viewer</h1>
-
 <div class="center">
-    <label class="btn waves-teal waves-effect">
-        <input type="file" class="hidden" (change)="setImage($event)">
-        Choose Image
-    </label>
-    <button (click)="uploadImage()" class="btn btn-margin waves-effect waves-teal">Upload
-        <i class="material-icons right">send</i>
-      </button>
+    <div class="landing-height">
+        <h2>PicSure Image Viewer</h2>
+        <label class="btn waves-teal waves-effect">
+            <input type="file" class="hidden" (change)="setImage($event)">
+            Choose Image
+        </label>
+        <button (click)="uploadImage()" class="btn btn-margin waves-effect waves-teal">Upload
+            <i class="material-icons right">send</i>
+        </button>
+        <div id="toast-container"></div>
 
-    <br><br>
-    
-    <img *ngIf="imageSrc" [ngStyle]="{border: '4px solid ' + getModifiedColor()}" [src]="imageSrc" alt="Uploaded Image">
-    <p *ngIf="!hiddenIndicator isModified">
-        <i class="material-icons large {{isModified ? 'red-text' : 'green-text'}}">{{isModified ? 'close' : 'check'}}</i>
-    </p>
+        <br><br>
+        
+        <img class="image-height" *ngIf="imageSrc" [ngStyle]="{border: '4px solid ' + getModifiedColor()}" [src]="imageSrc" alt="Uploaded Image">
+        <p *ngIf="!hiddenIndicator isModified">
+            <i class="material-icons large {{isModified ? 'red-text' : 'green-text'}}">{{isModified ? 'close' : 'check'}}</i>
+        </p>
+    </div>
+
+    <h2>Your Recently Viewed Images</h2>
+    <h5>Hover to see if the image has been modified or not.</h5>
+    <button (click)="clearCache()" class="btn waves-effect waves-teal btn-margin-bottom">Clear Images</button>
+
+    <div class="gallery-row landing-height">
+        <div class="gallery-column" *ngFor="let idx of [0, 1, 2, 3]">
+            <div *ngFor="let image of imageCache; let i = index"> 
+                <img src='{{image.image}}' class="image" *ngIf = "i%4 == idx" [ngStyle]="{border: '4px solid ' + (image.isModified ? 'red' : 'green')}">
+            </div>
+        </div>
+    </div>
 </div>
-
