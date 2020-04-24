@@ -31,7 +31,7 @@ export class HomeComponent {
 
     clearCache() {
         localStorage.clear();
-        this.imageCache = []
+        this.imageCache = [];
     }
 
     getModifiedColor(): string {
