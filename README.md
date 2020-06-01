@@ -4,6 +4,8 @@ PicSure uses special hardware to ensure pictures have never been manipulated.
 
 Team Drop Table's submission for CU Big Data class final project.
 
+[Presentation Slides and Video Demo](https://docs.google.com/presentation/d/1xa1tzlhwNpeagcaSDPA_OfpOEoHkXHZ7KapIqwsTJsQ/edit?usp=sharing)
+
 ### Project Components
 Service | Description
 ------- | -----------
